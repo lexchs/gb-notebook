@@ -2,7 +2,7 @@ package notebook.controller;
 
 import notebook.model.User;
 import notebook.model.repository.GBRepository;
-
+import notebook.model.repository.impl.UserRepository;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,9 +27,16 @@ public class UserController {
 
         throw new RuntimeException("User not found");
     }
+    public List<User> readAll(){
+        return repository.findAll();
+    }
 
     public void updateUser(String userId, User update) {
         update.setId(Long.parseLong(userId));
         repository.update(Long.parseLong(userId), update);
     }
+    public void deleteUser(String id){
+        repository.delete(Long.valueOf(id));
+    }
+
 }
